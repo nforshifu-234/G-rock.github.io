@@ -1,0 +1,309 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    background-color:  hsl(216, 12%, 8%);
+    color:  hsl(0, 0%, 100%);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
+.display-none
+{
+    display: none !important;
+}
+
+.display-block
+{
+    display: block !important;
+}
+
+.container
+{
+
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden !important;
+    overflow: -moz-hidden-unscrollable;
+
+}
+
+.container .rating-container
+{
+
+    width:  clamp(300px, 40%, 500px);
+    min-height: 30%;
+    background-color: hsl(213, 19%, 18%);
+    padding: 20px;
+    border-radius: 7px;
+    font-size: clamp( 1rem, 50vw, 1rem );
+}
+
+
+
+.container .rating-container .star-icon
+{
+    margin-bottom: 10px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: rgb(50, 58, 68);
+    width: 50px;
+    height: 50px;
+}
+
+.container .rating-container .title
+{
+    margin: 10px 0;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.container .rating-container .description
+{
+    font-size: x-small;
+    color: hsl(216, 12%, 54%);
+    line-height: 15px;
+    margin: 15px 0;
+    line-height: 20px;
+    /* margin-bottom: 0%; */
+}
+
+.numbers
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.numbers button
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    margin: 0px 3px;
+    background-color: rgb(50, 58, 68);
+    font-size: 10px;
+    color: hsl(216, 12%, 54%);
+    margin: 0 auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: 0.5s transform ease-in-out;
+}
+
+.numbers button:hover,
+.numbers button.active
+{
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(25, 97%, 53%);
+
+}
+
+.numbers button:hover
+{
+    transform: scale(1.1);
+}
+
+
+.submit
+{
+    width: 100%;
+    height: 40px;
+    background-color: hsl(25, 97%, 53%);
+    border-radius: 20px;
+    color: hsl(0, 0%, 100%);
+    border-color: hsl(25, 97%, 53%);
+    border: none;
+    text-transform: uppercase;
+    font-size: calc(100% - 3px);
+    letter-spacing: 2px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.submit:hover
+{
+    color: hsl(25, 97%, 53%);
+    background-color: hsl(0, 0%, 100%);
+
+}
+
+.submit:active
+{
+    color: hsl(25, 97%, 53%);
+    background-color: hsl(0, 0%, 100%);
+
+}
+
+
+.thank-you-container
+{
+    position: absolute;
+    top: -100vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(216, 12%, 8%, 0.8) ;
+}
+
+.thank-you-container-slide-in 
+{
+    transition: 1s;
+    top: 0;
+}
+
+.thank-you-container-slide-out 
+{
+    transition: 1s;
+    top: -100vh;
+}
+
+.thank-you-container .close-button
+{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    height: 50px;
+    width: 50px;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 0 10px 7px hsl(0, 0%, 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(216, 12%, 8%);
+}
+
+.thank-you-container .close-button svg
+{
+    width: 70%;
+    height: 70%;
+}
+
+.loading
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading .icon
+{
+    margin-right: 10px;
+    animation: spin 1s infinite linear ;
+}
+
+.loading .text
+{
+    animation: fade 3s infinite linear;
+}
+
+@keyframes spin {
+    
+    100%
+    {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes fade {
+    
+    0%
+    {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+
+    25%
+    {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+    
+    50%
+    {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    75%
+    {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+    100%
+    {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+
+}
+
+
+
+/* ERROR CONTAINER STYLING */
+
+.error-container
+{
+    display: none;
+}
+
+.error-container-container
+{
+    display: flex;
+    align-items: center;
+    background: hsl(0, 0%, 100%);
+    color: hsl(25, 97%, 53%);
+    height: 60px;
+    border-radius: 10px;
+}
+
+.error-container .error-contents
+{
+
+    padding: 0.5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.error-container .error-contents .error-icon
+{
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
+
+.error-container .error-contents .error-icon svg
+{
+    width:  70%;
+    height: 70%;
+}
+
+.error-container .error-contents .error-message
+{
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+}
+
+.error-container .close-button
+{
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-container .close-button svg
+{
+    width:  70%;
+    height: 70%;
+
+}

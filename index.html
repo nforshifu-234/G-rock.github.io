@@ -4,50 +4,140 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="main.css">
-  <script src="script.js"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/script.js"></script>
   
   <title>Frontend Mentor | Interactive rating component</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .attribution a { color: hsl(25, 97%, 53%); text-decoration: none; }
+    .attribution a:hover { color: hsl(25, 100%, 64%); text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <!-- Rating state start -->
   <div class="container">
-    <img src="images\icon-star.svg" alt="icon-star" height="10px" width="10px" class="img1"><br>
 
-    <b>How did we do?</b><br>
-
-    <p>Please let us know how we did with your support request. All feedback is appreciated 
-      to help us improve our offering!</p><br>
-
-    <div class="numbers">
-      <button onclick="one_func()" id="one">1</button>
-      <button onclick="" id="two">2</button>
-      <button onclick="" id="three">3</button>
-      <button onclick="" id="four">4</button>
-      <button onclick="" id="five">5</button>
-    </div> <br>
-
-    <button class="submit" onclick="" id="submit">Submit</button>
+    <!-- Rating state start -->
+      <input type="hidden" id="numberChosen" value="null" >
 
 
+      <div class="rating-container">
 
-  <!-- Rating state end -->
+        <img src="assets/images/icon-star.svg" alt="icon-star" height="10px" width="10px" class="img1 star-icon">
 
-  <!-- Thank you state start -->
+        <div class="error-container">
+
+          <div class="error-container-container">
+
+            <div class="error-contents">
+
+              <div class="error-icon">
+                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-exclamation-triangle' viewBox='0 0 16 16'><path d='M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z'/><path d='M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z'/></svg>
+              </div>
+    
+              <div class="error-message">
+                Please choose an option from 1-5
+              </div>
+  
+            </div>
+            
+            <div class="close-button">
+              <svg xmlns='http://www.w3.org/2000/svg'  fill='currentColor' viewBox='0 0 24 24'><path d='M15.71,8.29a1,1,0,0,0-1.42,0L12,10.59,9.71,8.29A1,1,0,0,0,8.29,9.71L10.59,12l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L13.41,12l2.3-2.29A1,1,0,0,0,15.71,8.29ZM19,2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2Zm1,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4H19a1,1,0,0,1,1,1Z'/></svg>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <div class="title">
+          How did we do?
+        </div>
+
+        <p class="description">
+          Please let us know how we did with your support request. All feedback is appreciated 
+          to help us improve our offering!
+        </p>
+
+        <div class="numbers">
+          <button class="number" >1</button>
+          <button class="number" >2</button>
+          <button class="number">3</button>
+          <button class="number" >4</button>
+          <button class="number">5</button>
+        </div> <br>
+
+        <div class="submit-container">
+
+          <button class="submit" id="submit">Submit</button>
+
+          <button type="button" class="submit display-none" id="loading">
+
+            <div class="loading">
+
+              <div class="icon">
+                <svg xmlns='http://www.w3.org/2000/svg' class="spin" fill="currentcolor" width="30" height="30" viewBox='0 0 24 24'><path d='M12,7a1,1,0,1,0,1,1A1,1,0,0,0,12,7ZM6.30383,16.134a1,1,0,1,0,1.366.366A1,1,0,0,0,6.30383,16.134Zm11.39234,0a1,1,0,1,0,.366,1.366A.99992.99992,0,0,0,17.69617,16.134Zm2.91418-2.7912v-.00048a4.91843,4.91843,0,0,0-4.52588-1.19678L15.665,11.3833a4.98871,4.98871,0,0,0-2.50342-8.25146,5.03485,5.03485,0,0,0-4.27832.958A4.97824,4.97824,0,0,0,7,8a4.92853,4.92853,0,0,0,1.35156,3.3916l-.41845.75a4.9889,4.9889,0,0,0-5.92627,6.28613,5.02991,5.02991,0,0,0,2.96972,3.22608,4.96944,4.96944,0,0,0,6.58887-3.18994l.8667.01416a4.98119,4.98119,0,0,0,4.76025,3.52441,5.01726,5.01726,0,0,0,4.79981-3.57373A4.95006,4.95006,0,0,0,20.61035,13.34277Zm-.52881,4.49512a3.0059,3.0059,0,0,1-4.38574,1.75977,2.96456,2.96456,0,0,1-1.35156-1.70508,1.99436,1.99436,0,0,0-1.90967-1.42871h-.86914a1.99451,1.99451,0,0,0-1.90967,1.42822A2.98084,2.98084,0,0,1,5.70654,19.792a2.99293,2.99293,0,0,1,1.76709-5.7041,1.96659,1.96659,0,0,0,2.17383-.94238l.43555-.75342a1.99513,1.99513,0,0,0-.28125-2.36865,2.9795,2.9795,0,0,1,.3291-4.37012A2.99279,2.99279,0,0,1,14.19971,10.022a2.00015,2.00015,0,0,0-.28272,2.37012l.43506.75293a1.97369,1.97369,0,0,0,2.17432.94336,2.98771,2.98771,0,0,1,3.55517,3.74951Z'/></svg>
+              </div>
+    
+              <div class="text">Loading</div>
+
+            </div>
+
+          </button>
+        </div>
+
+
+      </div>
+
+    <!-- Rating state end -->
+
 
   
   </div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="https://github.com/Gglovie">G-ROCK</a>.
-  </div>
+
+  <!-- Thank you state start -->
+
+    <div class="container thank-you-container">
+
+      <div class="close-button" id="closeBtn">
+        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-circle-fill' viewBox='0 0 16 16'><path d='M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z'/></svg>
+      </div>
+
+      <div class="rating-container " style="text-align: center; font-size: 15px;">
+
+        <img src="assets/images/illustration-thank-you.svg" alt="illustration-thank-you" height="40%" width="50%">
+
+        <div>
+
+            <div class="rating" style="font-size: 12px; color: hsl(25, 97%, 53%); margin: 10px 40px; 
+            background-color: rgb(50, 58, 68); padding: 0.7rem; border-radius: 30px;">
+                You selected <span id="numberSelected"></span> out of 5
+            </div>
+
+            <div class="title">Thank you!</div>
+
+            <p  class="description"> We appreciate you taking the time to give a rating. If you ever need more support, 
+                don’t hesitate to get in touch!
+            </p>
+
+              <div class="attribution">
+                Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+                Coded by <a href="https://github.com/Gglovie">G-ROCK</a>.
+              </div>
+
+        </div>
+
+
+    </div>
+
+    </div>
+
+  <!-- Thank you state end -->
+
 </body>
 </html>
